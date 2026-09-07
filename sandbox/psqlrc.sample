@@ -1,0 +1,24 @@
+-- Скопіюй у ~/.psqlrc  (cp sandbox/psqlrc.sample ~/.psqlrc)
+-- Див. plan/01-setup.md §0.5
+
+\set QUIET 1
+
+\pset null '∅'
+\pset linestyle unicode
+\pset border 2
+\x auto
+
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 5000
+\set HISTCONTROL ignoredups
+
+\timing on
+
+\set active 'SELECT pid, state, wait_event_type, wait_event, now()-query_start AS dur, left(query, 60) AS query FROM pg_stat_activity WHERE state <> ''idle'' AND pid <> pg_backend_pid() ORDER BY dur DESC;'
+\set locks 'SELECT locktype, relation::regclass, mode, granted, pid FROM pg_locks WHERE NOT granted;'
+\set blockers 'SELECT pid, pg_blocking_pids(pid) AS blocked_by, left(query,60) FROM pg_stat_activity WHERE cardinality(pg_blocking_pids(pid)) > 0;'
+\set bigtables 'SELECT relname, pg_size_pretty(pg_total_relation_size(relid)) AS total FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC LIMIT 15;'
+\set unusedidx 'SELECT relname, indexrelname, idx_scan, pg_size_pretty(pg_relation_size(indexrelid)) AS size FROM pg_stat_user_indexes WHERE schemaname NOT IN (''pg_catalog'') ORDER BY idx_scan, pg_relation_size(indexrelid) DESC;'
+
+\unset QUIET
+\echo 'psqlrc loaded. Macros: :active :locks :blockers :bigtables :unusedidx'
