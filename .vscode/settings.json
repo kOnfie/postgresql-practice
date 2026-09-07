@@ -1,0 +1,34 @@
+{
+  "sqltools.connections": [
+    {
+      "name": "fast_grab_db",
+      "driver": "PostgreSQL",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "database": "fast_grab",
+      "username": "postgres",
+      "password": "qwerty1234"
+    },
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "database": "practice",
+      "username": "denismatveev",
+      "name": "practice"
+    },
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "username": "denismatveev",
+      "database": "practice",
+      "name": "practice-postgresql"
+    }
+  ]
+}
