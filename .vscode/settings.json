@@ -1,34 +1,20 @@
 {
   "sqltools.connections": [
     {
-      "name": "fast_grab_db",
+      "name": "shop (practice)",
       "driver": "PostgreSQL",
-      "previewLimit": 50,
       "server": "localhost",
       "port": 5432,
-      "database": "fast_grab",
-      "username": "postgres",
-      "password": "qwerty1234"
-    },
-    {
-      "ssh": "Disabled",
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "database": "practice",
+      "database": "shop",
       "username": "denismatveev",
-      "name": "practice"
-    },
-    {
-      "ssh": "Disabled",
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "username": "denismatveev",
-      "database": "practice",
-      "name": "practice-postgresql"
+      "previewLimit": 100,
+      "pgOptions": { "search_path": "shop,public" }
     }
-  ]
+  ],
+  "sqltools.useNodeRuntime": true,
+  "files.associations": { "*.sql": "sql" },
+  "[sql]": {
+    "editor.tabSize": 2,
+    "editor.rulers": [100]
+  }
 }
